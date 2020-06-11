@@ -2,3 +2,4 @@
 Training with pandas/sqlite/python in general
 
 -- basic script to download data
+-- to-do: Analyse duh
