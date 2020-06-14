@@ -5,7 +5,7 @@ from selenium import webdriver
 # Setup for Firefox options
 firefoxOptions = webdriver.FirefoxOptions()
 firefoxOptions.set_preference("browser.download.folderList", 2)
-firefoxOptions.set_preference("browser.download.dir", "/home/davilbs/Code/Python/gov-data")
+firefoxOptions.set_preference("browser.download.dir", "/home/davilbs/Code/Python/gov-data-analysis")
 firefoxOptions.set_preference("browser.download.useDownloadDir", True)
 # Disable save prompt for csv and pdf mime types
 firefoxOptions.set_preference("browser.helperApps.neverAsk.saveToDisk", "text/csv,application/pdf")
@@ -43,7 +43,9 @@ for dataset in DATASETS:
         if ".csv" in f:
             if "importacao" in f:
                 os.rename(f, os.path.join(importDir, f))
-            else:
+            elif "exportacao" in f:
                 os.rename(f, os.path.join(exportDir, f))
+            else:
+                os.rename(f, os.path.join(dataset, f))
         if ".pdf" in f:
             os.rename(f, os.path.join(dataset, f))
