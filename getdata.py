@@ -5,7 +5,7 @@ from selenium import webdriver
 # Setup for Firefox options
 firefoxOptions = webdriver.FirefoxOptions()
 firefoxOptions.set_preference("browser.download.folderList", 2)
-firefoxOptions.set_preference("browser.download.dir", "/home/davilbs/Code/Python/gov-data-analysis")
+firefoxOptions.set_preference("browser.download.dir", "/home/davilbs/Code/gov-data-analysis")
 firefoxOptions.set_preference("browser.download.useDownloadDir", True)
 # Disable save prompt for csv and pdf mime types
 firefoxOptions.set_preference("browser.helperApps.neverAsk.saveToDisk", "text/csv,application/pdf")
@@ -31,13 +31,13 @@ for dataset in DATASETS:
 
 # Create directories and moves tables and pdfs
     files = os.listdir()
+    importDir = os.path.join(dataset, "importacao")
+    exportDir = os.path.join(dataset, "exportacao")
     if not os.path.isdir(dataset):
         os.mkdir(dataset)
-        importDir = os.path.join(dataset, "importacao")
-        exportDir = os.path.join(dataset, "exportacao")
-        if not os.path.isdir(importDir):
-            os.mkdir(importDir)
-        if not os.path.isdir(exportDir):
+    if not os.path.isdir(importDir):
+        os.mkdir(importDir)
+    if not os.path.isdir(exportDir):
             os.mkdir(exportDir)
     for f in files:
         if ".csv" in f:
